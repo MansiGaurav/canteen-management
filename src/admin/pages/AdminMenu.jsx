@@ -42,12 +42,11 @@ import latteespresso from "../../assets/latteespresso.png";
 function AdminMenu() {
 
   const [activeCategory, setActiveCategory] = useState("All");
-
-
-
-
+  const [selectedSection, setSelectedSection] = useState("breakfast"); // ✅ NEW
   const [searchTerm, setSearchTerm] = useState("");
+
   const [menuItems, setMenuItems] = useState([
+   
 
     /* ALL */
     {
@@ -122,10 +121,6 @@ function AdminMenu() {
       status: "Available"
     },
 
-
-
-
-
     /* SNACKS */
     {
       id: 9,
@@ -199,10 +194,6 @@ function AdminMenu() {
       status: "Available"
     },
 
-
-
-
-
     /* DRINKS */
     {
       id: 17,
@@ -275,7 +266,7 @@ function AdminMenu() {
       image: limca,
       status: "Available"
     },
-    
+   
     /* BEVERAGES */
     {
   id: 25,
@@ -350,10 +341,6 @@ function AdminMenu() {
 },
   ]);
 
-
-
-
-
   const updateStatus = (id, newStatus) => {
 
     const updatedItems = menuItems.map((item) =>
@@ -366,10 +353,31 @@ function AdminMenu() {
 
     setMenuItems(updatedItems);
   };
-
-
-
-
+ 
+const [lunchMenu, setLunchMenu] = useState([
+    { name: "Tawa Roti", price: 7 },
+    { name: "Plain Paratha", price: 10 },
+    { name: "Laccha Paratha", price: 20 },
+    { name: "Mix Veg", price: 80 },
+    { name: "Matar Paneer", price: 100 },
+    { name: "Paneer Butter Masala", price: 120 },
+    { name: "Veg Noodles", price: 60 },
+    { name: "Paneer Noodles", price: 90 },
+    { name: "Chicken Noodles", price: 110 },
+    { name: "Veg Manchurian", price: 80 },
+    { name: "Paneer Chilli", price: 120 },
+    { name: "Egg Roll", price: 50 },
+    { name: "Chicken Roll", price: 80 },
+    { name: "Veg Thali", price: 70 },
+    { name: "Special Thali", price: 120 },
+    { name: "Veg Biryani",price: 120}
+  ]);
+  const updateLunchStatus = (id, newStatus) => {
+    const updated = lunchMenu.map((item) =>
+      item.id === id ? { ...item, status: newStatus } : item
+    );
+    setLunchMenu(updated);
+  };
 
   return (
     <div
@@ -382,19 +390,12 @@ function AdminMenu() {
       }}
     >
 
-
-
-
       {/* TOP */}
       <div className="admin-menu-top">
 
         <h1 className="admin-menu-heading">
           Menu Management
         </h1>
-
-
-
-
 
         <input
   type="text"
@@ -403,47 +404,32 @@ function AdminMenu() {
   onChange={(e) => setSearchTerm(e.target.value)}
 />
 
-
-
-
         <button>
           + Add Item
         </button>
 
       </div>
 
-
-
-
-
       {/* TIMELINE */}
       <div className="admin-timeline-section">
 
-        <div className="timeline-box active-timeline">
+  <div
+    className={`timeline-box ${selectedSection === "breakfast" ? "active-timeline" : ""}`}
+    onClick={() => setSelectedSection("breakfast")}
+  >
+    <h2>Breakfast</h2>
+    <p>8:00 AM - 11:00 AM</p>
+  </div>
 
-          <h2>Breakfast</h2>
+  <div
+    className={`timeline-box ${selectedSection === "lunch" ? "active-timeline" : ""}`}
+    onClick={() => setSelectedSection("lunch")}
+  >
+    <h2>Lunch</h2>
+    <p>12:00 PM - 4:00 PM</p>
+  </div>
 
-          <p>8:00 AM - 11:00 AM</p>
-
-        </div>
-
-
-
-
-
-        <div className="timeline-box">
-
-          <h2>Lunch</h2>
-
-          <p>12:00 PM - 4:00 PM</p>
-
-        </div>
-
-      </div>
-
-
-
-
+</div>
 
       {/* CATEGORY */}
       <div className="admin-category-section">
@@ -459,10 +445,6 @@ function AdminMenu() {
           All
         </button>
 
-
-
-
-
         <button
           className={
             activeCategory === "Snacks"
@@ -474,10 +456,6 @@ function AdminMenu() {
           Snacks
         </button>
 
-
-
-
-
         <button
           className={
             activeCategory === "Drinks"
@@ -488,10 +466,6 @@ function AdminMenu() {
         >
           Drinks
         </button>
-
-
-
-
 
         <button
           className={
@@ -505,10 +479,6 @@ function AdminMenu() {
         </button>
 
       </div>
-
-
-
-
 
       {/* FOOD GRID */}
       <div className="admin-food-grid">
@@ -541,27 +511,15 @@ function AdminMenu() {
                 alt=""
               />
 
-
-
-
-
               <div className="food-content">
 
                 <h2>
                   {item.name}
                 </h2>
 
-
-
-
-
                 <h3>
                   ₹ {item.price}
                 </h3>
-
-
-
-
 
                 <div className="food-status">
 
@@ -586,10 +544,6 @@ function AdminMenu() {
                   </span>
 
                 </div>
-
-
-
-
 
                 <select
 
@@ -620,10 +574,55 @@ function AdminMenu() {
             </div>
 
           ))}
+  {/* ✅ LUNCH TABLE */}
+  {selectedSection === "lunch" && (
+        <div className="lunch-table-section">
 
-      </div>
+          <h2 className="table-title">Lunch Menu</h2>
+
+          <table className="menu-table">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+  {lunchMenu.map((item, index) => (
+    <tr key={item.id}>
+      <td>{index + 1}</td>
+      <td>{item.name}</td>
+      <td>₹ {item.price}</td>
+
+      <td>
+        <select
+          value={item.status}
+          onChange={(e) =>
+            updateLunchStatus(item.id, e.target.value)
+          }
+          className="lunch-status-dropdown"
+        >
+          <option>Available</option>
+          <option>Not Available</option>
+          <option>Out of Stock</option>
+        </select>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
+          </table>
+
+        </div>
+      )}
 
     </div>
+      </div>
+
+ 
 
   );
 }
