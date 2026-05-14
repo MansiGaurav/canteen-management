@@ -1,0 +1,89 @@
+.token-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: url("../assets/chillilogo-bg.png") no-repeat center;
+  background-size: cover;
+  position: relative;
+}
+
+/* 🔥 OVERLAY */
+.token-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* 🔥 CARD */
+.token-card {
+  width: 360px;
+  background: rgba(20, 30, 60, 0.9);
+  border-radius: 25px;
+  padding: 30px;
+  text-align: center;
+  color: white;
+
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(12px);
+}
+
+/* 🔥 HEADING */
+.token-card h2 {
+  color: #ffd000;
+  margin-bottom: 15px;
+}
+
+/* 🔥 TOKEN BOX */
+.token-box {
+  background: #101935;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+/* TOKEN NUMBER */
+.token-box h1 {
+  font-size: 42px;
+  color: #ffd000;
+  animation: pop 0.5s ease;
+}
+
+/* 🔥 DETAILS */
+.token-details {
+  margin: 15px 0;
+}
+
+.token-details p {
+  margin: 5px 0;
+}
+
+/* 🔥 STATUS */
+.status {
+  margin-top: 10px;
+  color: #ffd000;
+  font-weight: bold;
+  animation: blink 1s infinite;
+}
+
+/* NOTE */
+.note {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #ccc;
+}
+
+/* 🔥 ANIMATIONS */
+@keyframes pop {
+  0% { transform: scale(0.5); }
+  100% { transform: scale(1); }
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
