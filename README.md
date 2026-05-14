@@ -1,16 +1,82 @@
-# React + Vite
+# Canteen Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
+This project is a Canteen Management System developed using React.js. 
+It allows users to select food items, add them to the cart, place orders, and get a token for collecting their food.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+User Side:
+- View food items like snacks, drinks, and beverages
+- Add items to cart
+- Increase or decrease quantity
+- View total amount
+- Checkout and payment
+- Generate token after placing order
+- View current orders
+- View order history
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Authentication:
+- User registration
+- Admin registration
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Technologies Used
+
+- React.js
+- JavaScript
+- CSS
+- React Router
+- LocalStorage
+
+---
+
+## Application Flow
+
+Add Items -> Cart -> Payment -> Token -> Orders
+
+---
+
+## Project Structure
+
+src/
+- components/
+- pages/
+- css/
+- auth/
+- assets/
+
+---
+
+## Pages Included
+
+- Cart Page
+- Payment Page
+- Token Page
+- Orders Page
+- Authentication Page
+
+---
+
+## Outcome
+
+This project shows a complete frontend system for canteen ordering. 
+It includes cart management, order placement, token system, and order history.
+
+---
+
+## Developed By
+
+Mansi Gaurav
+
+---
+
+## Future Improvements
+
+- Add backend using Node.js and MongoDB
+- Add real-time order updates
+- Add admin dashboard
+- Add online payment system
