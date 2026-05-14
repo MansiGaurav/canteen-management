@@ -11,10 +11,10 @@ import "../css/Dashboard.css";
 
 function UserDashboard() {
 
+  // ✅ ADD THIS (IMPORTANT)
+  const [category, setCategory] = useState("all");
+
   const [cart, setCart] = useState([]);
-
-
-
 
   /* ADD TO CART */
   const addToCart = (food) => {
@@ -23,105 +23,67 @@ function UserDashboard() {
       (item) => item.id === food.id
     );
 
-
-
-    if(existingItem){
+    if (existingItem) {
 
       setCart(
-
         cart.map((item) =>
-
           item.id === food.id
-
             ? {
                 ...item,
                 quantity: item.quantity + 1,
               }
-
             : item
         )
-
       );
 
-    }
-
-    else{
+    } else {
 
       setCart([
-
         ...cart,
-
         {
           ...food,
           quantity: 1,
         },
-
       ]);
 
     }
   };
 
-
-
-
   /* INCREASE QUANTITY */
   const increaseQty = (id) => {
-
     setCart(
-
       cart.map((item) =>
-
         item.id === id
-
           ? {
               ...item,
               quantity: item.quantity + 1,
             }
-
           : item
       )
-
     );
   };
 
-
-
-
   /* DECREASE QUANTITY */
   const decreaseQty = (id) => {
-
     setCart(
-
       cart
         .map((item) =>
-
           item.id === id
-
             ? {
                 ...item,
                 quantity: item.quantity - 1,
               }
-
             : item
         )
-
         .filter((item) => item.quantity > 0)
-
     );
   };
 
-
-
-
   return (
-
     <div className="dashboard">
 
       {/* SIDEBAR */}
       <Sidebar />
-
-
-
 
       {/* MAIN SECTION */}
       <div className="dashboard-main">
@@ -129,47 +91,32 @@ function UserDashboard() {
         {/* NAVBAR */}
         <Navbar />
 
-
-
-
         {/* BANNER */}
         <Banner />
 
-
-
-
-        {/* CATEGORY */}
-        <Category />
-
-
-
+        {/* ✅ CATEGORY (UPDATED) */}
+        <Category setCategory={setCategory} />
 
         {/* FOOD + CART */}
         <div className="dashboard-content">
 
-          {/* FOOD ITEMS */}
-          <FoodCard addToCart={addToCart} />
-
-
-
+          {/* ✅ FOOD ITEMS (UPDATED) */}
+          <FoodCard
+            selectedCategory={category}
+            addToCart={addToCart}
+          />
 
           {/* CART */}
           <Cart
-
             cart={cart}
-
             increaseQty={increaseQty}
-
             decreaseQty={decreaseQty}
-
           />
 
         </div>
 
       </div>
-
     </div>
-
   );
 }
 

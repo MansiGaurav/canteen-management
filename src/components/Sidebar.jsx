@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "../css/Sidebar.css";
 
 import { useState } from "react";
@@ -15,7 +16,7 @@ import {
 function Sidebar() {
 
   const [activeMenu, setActiveMenu] = useState("Dashboard");
-
+  const navigate = useNavigate();
 
 
   const menus = [
@@ -79,26 +80,24 @@ function Sidebar() {
           menus.map((item, index) => (
 
             <li
-
-              key={index}
-
-              className={
-                activeMenu === item.name
-                  ? "active"
-                  : ""
+            key={index}
+            className={
+              activeMenu === item.name
+                ? "active"
+                : ""
+            }
+          
+            onClick={() => {
+              setActiveMenu(item.name);
+          
+              if (item.name === "Orders") {
+                navigate("/orders");
               }
-
-              onClick={() =>
-                setActiveMenu(item.name)
-              }
-
-            >
-
-              {item.icon}
-
-              {item.name}
-
-            </li>
+            }}
+          >
+            {item.icon}
+            {item.name}
+          </li> 
 
           ))
 
