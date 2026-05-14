@@ -7,8 +7,7 @@ It allows users to select food items, add them to the cart, place orders, and ge
 ---
 
 ## Features
-
-User Side:
+### User Side
 - View food items like snacks, drinks, and beverages
 - Add items to cart
 - Increase or decrease quantity
@@ -17,8 +16,29 @@ User Side:
 - Generate token after placing order
 - View current orders
 - View order history
-
-Authentication:
+- 
+ ### Admin Side
+- Admin dashboard
+- View all orders
+- View token number and items
+- Menu management system
+- Breakfast section with category filters
+- Lunch section with table format
+- Editable availability status in lunch menu
+- 
+- ## Admin Menu Module
+- Breakfast section shows items in card format
+- Categories include All, Snacks, Drinks, Beverages
+- Lunch section is clickable
+- Lunch menu is displayed in table format
+- Table includes:
+  - Serial Number
+  - Item Name
+  - Price
+  - Availability
+- Admin can update item availability
+- 
+- Authentication
 - User registration
 - Admin registration
 
