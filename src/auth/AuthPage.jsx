@@ -5,10 +5,18 @@ import "./AuthPage.css";
 
 function AuthPage() {
   const [role, setRole] = useState("user");
+  const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
 
   const handleSignup = (e) => {
     e.preventDefault();
+
+    // ✅ GET NAME FROM INPUT
+    const nameInput = e.target.querySelector("input[type='text']");
+    const name = nameInput ? nameInput.value : "User";
+
+    // ✅ STORE NAME
+    localStorage.setItem("userName", name);
 
     if (role === "admin") {
       navigate("/admin");
@@ -26,6 +34,9 @@ function AuthPage() {
 
     console.log("Google User:", fakeUser);
 
+    // ✅ STORE GOOGLE USER NAME
+    localStorage.setItem("userName", fakeUser.name);
+
     if (role === "admin") {
       navigate("/admin");
     } else {
@@ -37,63 +48,115 @@ function AuthPage() {
     <div className="auth-container">
       <div className="auth-box">
 
-        <h2>Create Account</h2>
-        <p className="subtitle">Join your cafeteria dashboard</p>
+        {/* TITLE */}
+        <h2>{isLogin ? "Sign In" : "Create Account"}</h2>
+        <p className="subtitle">
+          {isLogin ? "Welcome back" : "Join your cafeteria dashboard"}
+        </p>
 
         {/* ROLE SWITCH */}
-        <div className="role-switch">
-          <button
-            className={role === "user" ? "active" : ""}
-            onClick={() => setRole("user")}
-          >
-            User
-          </button>
+        {!isLogin && (
+          <div className="role-switch">
+            <button
+              className={role === "user" ? "active" : ""}
+              onClick={() => setRole("user")}
+            >
+              User
+            </button>
 
-          <button
-            className={role === "admin" ? "active" : ""}
-            onClick={() => setRole("admin")}
-          >
-            Admin
-          </button>
-        </div>
+            <button
+              className={role === "admin" ? "active" : ""}
+              onClick={() => setRole("admin")}
+            >
+              Admin
+            </button>
+          </div>
+        )}
 
+        {/* FORM */}
         <form onSubmit={handleSignup}>
 
-          <input type="text" placeholder="Enter Name" required />
-          <input type="email" placeholder="Enter Email" required />
-          <input type="password" placeholder="Enter Password" required />
-          <input type="tel" placeholder="Enter Phone Number" required />
+          {/* SIGNUP */}
+          {!isLogin && (
+            <>
+              <input type="text" placeholder="Enter Name" required />
+              <input type="email" placeholder="Enter Email" required />
+              <input type="password" placeholder="Enter Password" required />
+              <input type="tel" placeholder="Enter Phone Number" required />
 
-          {/* ADMIN ONLY */}
-          {role === "admin" && (
-            <input
-              type="password"
-              placeholder="Enter Secret Key"
-              required
-            />
+              {role === "admin" && (
+                <input
+                  type="password"
+                  placeholder="Enter Secret Key"
+                  required
+                />
+              )}
+
+              <button type="submit" className="signup-btn">
+                Sign Up
+              </button>
+
+              <div className="divider">OR</div>
+
+              <button
+                type="button"
+                className="google-btn"
+                onClick={handleGoogleLogin}
+              >
+                <FcGoogle size={20} />
+                Continue with Google
+              </button>
+            </>
           )}
 
-          <button type="submit" className="signup-btn">
-            Sign Up
-          </button>
+          {/* LOGIN */}
+          {isLogin && (
+            <>
+              <button
+                type="button"
+                className="google-btn"
+                onClick={handleGoogleLogin}
+              >
+                <FcGoogle size={20} />
+                Continue with Google
+              </button>
 
-          <div className="divider">OR</div>
+              <div className="divider">OR</div>
 
-          {/* GOOGLE LOGIN */}
-          <button
-            type="button"
-            className="google-btn"
-            onClick={handleGoogleLogin}
-          >
-            <FcGoogle size={20} />
-            Continue with Google
-          </button>
+              <input type="email" placeholder="Email" required />
+              <input type="password" placeholder="Password" required />
 
+              {role === "admin" && (
+                <input
+                  type="password"
+                  placeholder="Enter Secret Key"
+                  required
+                />
+              )}
+
+              <button type="submit" className="signup-btn">
+                Sign In
+              </button>
+            </>
+          )}
+
+          {/* SWITCH */}
           <p className="login-text">
-            Already have an account? <span>Sign In</span>
+            {isLogin ? (
+              <>
+                New user?{" "}
+                <span onClick={() => setIsLogin(false)}>Sign Up</span>
+              </>
+            ) : (
+              <>
+                Already have an account?{" "}
+                <span onClick={() => setIsLogin(true)}>Sign In</span>
+              </>
+            )}
           </p>
 
         </form>
+
       </div>
     </div>
   );
