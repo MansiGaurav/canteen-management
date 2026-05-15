@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa"; // ✅ NEW
 import "../css/Payment.css";
 
 function Payment() {
@@ -13,33 +14,49 @@ function Payment() {
   const [selectedPlace, setSelectedPlace] = useState("Cafeteria");
   const [selectedPayment, setSelectedPayment] = useState("Cash");
   const [orderPlaced, setOrderPlaced] = useState(false);
+
   const navigate = useNavigate();
+
+  // ✅ BACK FUNCTION (NEW)
+  const handleBack = () => {
+    if (location.pathname === "/home") {
+      navigate("/register"); // change if your route name is different
+    } else {
+      navigate(-1);
+    }
+  };
+
   // ✅ HANDLE ORDER
   const handleOrder = () => {
     const token = Math.floor(1000 + Math.random() * 9000);
-  
+
     navigate("/token", {
       state: {
         token,
         total,
         place: selectedPlace,
         payment: selectedPayment,
-        cartItems: location.state?.cart || [], // 🔥 IMPORTANT
+        cartItems: location.state?.cart || [],
       },
     });
   };
+
   return (
     <div className="payment-page">
+
+      {/* 🔥 BACK BUTTON (NEW) */}
+      <button onClick={handleBack} className="back-btn">
+        <FaArrowLeft />
+      </button>
 
       <div className="payment-card">
 
         {/* 🔥 BEFORE ORDER */}
         {!orderPlaced ? (
           <>
-            {/* HEADING */}
             <h2>Checkout</h2>
 
-            {/* 🔥 LOCATION */}
+            {/* LOCATION */}
             <div className="section">
               <p className="section-title">Deliver To</p>
 
@@ -54,7 +71,7 @@ function Payment() {
               ))}
             </div>
 
-            {/* 🔥 PAYMENT */}
+            {/* PAYMENT */}
             <div className="section">
               <p className="section-title">Payment Method</p>
 
@@ -69,19 +86,18 @@ function Payment() {
               ))}
             </div>
 
-            {/* 🔥 TOTAL */}
+            {/* TOTAL */}
             <div className="total-section">
               <p>Total Amount</p>
               <h2>₹ {total}</h2>
             </div>
 
-            {/* 🔥 BUTTON */}
+            {/* BUTTON */}
             <button className="place-order-btn" onClick={handleOrder}>
               Place Order
             </button>
           </>
         ) : (
-          /* 🔥 AFTER ORDER (SUCCESS SCREEN) */
           <div className="success-box">
             <h2>🎉 Order Placed Successfully</h2>
             <p><strong>Pickup:</strong> {selectedPlace}</p>
