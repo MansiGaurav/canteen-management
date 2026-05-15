@@ -2,14 +2,14 @@
   min-height: 100vh;
   padding: 20px;
 
-  /* 🔥 BACKGROUND IMAGE */
+  /*  BACKGROUND IMAGE */
   background: url("../assets/chillilogo-bg.png") no-repeat center;
   background-size: cover;
 
   position: relative;
 }
 
-/* 🔥 DARK OVERLAY (so text is visible) */
+/*  DARK OVERLAY (so text is visible) */
 .orders-page::before {
   content: "";
   position: absolute;
@@ -23,7 +23,36 @@
   z-index: 1;
   color: white;
 }
+.orders-page {
+  position: relative; /* IMPORTANT */
+}
 
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  border: none;
+
+  background: #ffd000;
+  color: black;
+
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 10;
+}
+
+.back-btn:hover {
+  background: #ffbf00;
+}
 /* TITLE */
 .orders-title {
   color: #ffd000;
