@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom"; //  NEW
+import { FaArrowLeft } from "react-icons/fa"; //  NEW
 import "../css/Orders.css";
 
 function Orders() {
@@ -6,15 +8,24 @@ function Orders() {
   const [currentOrders, setCurrentOrders] = useState([]);
   const [historyOrders, setHistoryOrders] = useState([]);
 
+  const navigate = useNavigate();   //  NEW
+  const location = useLocation();   //  NEW
+
+  //  BACK FUNCTION (NEW)
+  const handleBack = () => {
+    if (location.pathname === "/home") {
+      navigate("/register"); // update if needed
+    } else {
+      navigate(-1);
+    }
+  };
+
   useEffect(() => {
     const savedOrders =
       JSON.parse(localStorage.getItem("orders")) || [];
 
-    // 🔥 Latest order → current
     if (savedOrders.length > 0) {
       setCurrentOrders([savedOrders[0]]);
-
-      // 🔥 Rest → history
       setHistoryOrders(savedOrders.slice(1));
     }
   }, []);
@@ -22,9 +33,14 @@ function Orders() {
   return (
     <div className="orders-page">
 
+      {/*  BACK BUTTON */}
+      <button onClick={handleBack} className="back-btn">
+        <FaArrowLeft />
+      </button>
+
       <h1 className="orders-title">My Orders</h1>
 
-      {/* 🔥 CURRENT ORDERS */}
+      {/* CURRENT ORDERS */}
       <div className="orders-section">
         <h2>Current Orders</h2>
 
@@ -46,7 +62,7 @@ function Orders() {
             ) : (
               currentOrders[0].items.map((item, index) => (
                 <tr key={index}>
-                  <td>{index + 1}</td> {/* ✅ FIXED SERIAL */}
+                  <td>{index + 1}</td>
                   <td>#{currentOrders[0].token}</td>
                   <td>{item.name}</td>
                   <td>{item.quantity}</td>
@@ -57,7 +73,7 @@ function Orders() {
         </table>
       </div>
 
-      {/* 🔥 ORDER HISTORY */}
+      {/* ORDER HISTORY */}
       <div className="orders-section">
         <h2>Order History</h2>
 
@@ -80,7 +96,7 @@ function Orders() {
               historyOrders.map((order, orderIndex) =>
                 order.items.map((item, itemIndex) => (
                   <tr key={orderIndex + "-" + itemIndex}>
-                    <td>{itemIndex + 1}</td> {/* ✅ RESET SERIAL PER ORDER */}
+                    <td>{itemIndex + 1}</td>
                     <td>#{order.token}</td>
                     <td>{item.name}</td>
                     <td>{item.quantity}</td>
