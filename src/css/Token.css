@@ -9,15 +9,44 @@
   position: relative;
 }
 
-/* 🔥 OVERLAY */
+/*  OVERLAY */
 .token-page::before {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
 }
+.token-page {
+  position: relative; /* IMPORTANT */
+}
 
-/* 🔥 CARD */
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  border: none;
+
+  background: #ffd000;
+  color: black;
+
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 10;
+}
+
+.back-btn:hover {
+  background: #ffbf00;
+}
+/*  CARD */
 .token-card {
   width: 360px;
   background: rgba(20, 30, 60, 0.9);
@@ -31,13 +60,13 @@
   backdrop-filter: blur(12px);
 }
 
-/* 🔥 HEADING */
+/*  HEADING */
 .token-card h2 {
   color: #ffd000;
   margin-bottom: 15px;
 }
 
-/* 🔥 TOKEN BOX */
+/*  TOKEN BOX */
 .token-box {
   background: #101935;
   border-radius: 15px;
@@ -61,7 +90,7 @@
   margin: 5px 0;
 }
 
-/* 🔥 STATUS */
+/*  STATUS */
 .status {
   margin-top: 10px;
   color: #ffd000;
@@ -76,7 +105,7 @@
   color: #ccc;
 }
 
-/* 🔥 ANIMATIONS */
+/*  ANIMATIONS */
 @keyframes pop {
   0% { transform: scale(0.5); }
   100% { transform: scale(1); }
