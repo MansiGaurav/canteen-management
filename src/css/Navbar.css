@@ -15,13 +15,33 @@
 
 
 /* LEFT SIDE */
-.navbar-left{
-  display: flex;
-  flex-direction: column;
 
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.back-btn {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
   justify-content: center;
 
-  gap: 2px;
+  border-radius: 10px;
+  border: none;
+
+  background: #ffd000;
+  color: black;
+
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: #ffbf00;
 }
 
 /* HELLO TEXT */
@@ -239,4 +259,110 @@ body.light-theme .total-row h3{
   object-fit: cover;
 
   border: 2px solid #ffb800;
+}
+/* NAVBAR LAYOUT */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px 25px;
+}
+
+/* LEFT SIDE */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* BACK BUTTON (IMPROVED) */
+.back-btn {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  border: none;
+
+  background: #ffd000;
+  color: black;
+
+  font-size: 16px;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: #ffbf00;
+  transform: scale(1.1);
+}
+
+/*  HEADING */
+.navbar-heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffd000;
+}
+
+/* OPTIONAL: highlight name only */
+.navbar-heading span {
+  color: white;
+  font-weight: 600;
+}
+
+/* SUBTEXT */
+.navbar-text {
+  font-size: 13px;
+  color: #ccc;
+}
+
+/* RIGHT SIDE */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* SEARCH BAR */
+.search-bar {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+/* ICONS */
+.nav-icon {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* AVATAR */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.navbar-heading {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffd000;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* USER NAME STYLING */
+.user-name {
+  color: rgb(219, 191, 30);
+  margin-left: 5px;  
+  margin-right: 5px;   
+  letter-spacing: 0.5px;
 }
