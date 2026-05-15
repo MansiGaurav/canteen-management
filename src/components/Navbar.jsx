@@ -1,74 +1,72 @@
 import "../css/Navbar.css";
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import avatar from "../assets/avatar.png";
 import {
   FaMoon,
   FaSun,
-  FaBell
+  FaBell,
+  FaArrowLeft
 } from "react-icons/fa";
 
 function Navbar() {
 
   const [showNotification, setShowNotification] = useState(false);
-
   const [darkMode, setDarkMode] = useState(true);
 
+  const navigate = useNavigate();
+  const location = useLocation();
 
-
+  //  GET USER NAME FROM STORAGE
+  const userName = localStorage.getItem("userName");
 
   /* THEME TOGGLE */
   const toggleTheme = () => {
-
     setDarkMode(!darkMode);
-
   };
-
-
-
 
   /* APPLY THEME */
   useEffect(() => {
-
     if(darkMode){
-
       document.body.classList.remove("light-theme");
-
-    }
-
-    else{
-
+    } else {
       document.body.classList.add("light-theme");
-
     }
-
   }, [darkMode]);
 
-
-
-
+  /*  BACK FUNCTION */
+  const handleBack = () => {
+    if (location.pathname === "/home") {
+      navigate("/");   // registration page
+    } else {
+      navigate(-1);
+    }
+  };
 
   return (
-
     <div className="navbar">
 
       {/* LEFT SIDE */}
       <div className="navbar-left">
 
-        <h1 className="navbar-heading">
-          Hello Mansi 👋
-        </h1>
+        {/* BACK BUTTON */}
+        <button onClick={handleBack} className="back-btn">
+          <FaArrowLeft />
+        </button>
 
-        <p className="navbar-text">
-          Want to order something?
-        </p>
+        <div>
+          {/*  DYNAMIC NAME */}
+          <h1 className="navbar-heading">
+  Hello <span className="user-name">{userName || "User"}</span> 👋
+</h1>
+
+          <p className="navbar-text">
+            Want to order something?
+          </p>
+        </div>
 
       </div>
-
-
-
-
 
       {/* RIGHT SIDE */}
       <div className="navbar-right">
@@ -80,10 +78,6 @@ function Navbar() {
           className="search-bar"
         />
 
-
-
-
-
         {/* NOTIFICATION */}
         <div className="notification-wrapper">
 
@@ -93,81 +87,41 @@ function Navbar() {
               setShowNotification(!showNotification)
             }
           >
-
             <FaBell />
-
           </div>
 
-
-
-
-
           {
-
             showNotification && (
-
               <div className="notification-box">
-
-                <p>
-                  🍔 Your order is confirmed
-                </p>
-
-                <p>
-                  ☕ Cold Coffee is ready
-                </p>
-
-                <p>
-                  🎉 New offers available
-                </p>
-
+                <p>🍔 Your order is confirmed</p>
+                <p>☕ Cold Coffee is ready</p>
+                <p>🎉 New offers available</p>
               </div>
-
             )
-
           }
 
         </div>
-
-
-
-
 
         {/* THEME BUTTON */}
         <div
           className="nav-icon theme-icon"
           onClick={toggleTheme}
         >
-
-          {
-
-            darkMode
-
-              ? <FaSun />
-
-              : <FaMoon />
-
-          }
-
+          {darkMode ? <FaSun /> : <FaMoon />}
         </div>
 
-
-
-
-
         {/* AVATAR */}
-        <Link to="/login">
+        <Link to="/">
+          <img
+            src={avatar}
+            alt=""
+            className="avatar"
+          />
+        </Link>
 
-        <img
-  src={avatar}
-  alt=""
-  className="avatar"
-/>
-
-</Link>
       </div>
 
     </div>
-
   );
 }
 
