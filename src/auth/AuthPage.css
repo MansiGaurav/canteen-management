@@ -44,12 +44,15 @@
   text-align: center;
   font-size: 14px;
   margin-bottom: 20px;
+  color: #ccc;
 }
 
 /* ROLE SWITCH */
 .role-switch {
   display: flex;
   margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .role-switch button {
@@ -80,9 +83,10 @@
   outline: none;
 
   font-size: 14px;
+  background: #f1f1f1;
 }
 
-/* SIGNUP BUTTON */
+/* SIGNUP / SIGNIN BUTTON */
 .signup-btn {
   width: 100%;
   padding: 12px;
@@ -107,6 +111,8 @@
   text-align: center;
   margin: 12px 0;
   font-size: 14px;
+  color: #aaa;
+  position: relative;
 }
 
 /* GOOGLE BUTTON */
@@ -127,20 +133,33 @@
 
   cursor: pointer;
   transition: 0.3s;
+  font-weight: 600;
 }
 
 .google-btn:hover {
   background: #f1f1f1;
 }
 
-/* LOGIN TEXT */
+/* LOGIN / SWITCH TEXT */
 .login-text {
   margin-top: 12px;
   font-size: 13px;
   text-align: center;
+  color: #ccc;
 }
 
 .login-text span {
   color: #ffd000;
   cursor: pointer;
+  font-weight: 600;
+}
+
+/* 🔥 EXTRA FOR LOGIN MODE */
+.auth-box.login-mode input {
+  margin: 8px 0;
+}
+
+/* OPTIONAL SMOOTH TRANSITION */
+.auth-box {
+  transition: all 0.3s ease;
 }
