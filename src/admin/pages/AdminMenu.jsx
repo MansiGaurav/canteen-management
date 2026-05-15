@@ -42,7 +42,7 @@ import latteespresso from "../../assets/latteespresso.png";
 function AdminMenu() {
 
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedSection, setSelectedSection] = useState("breakfast"); // ✅ NEW
+  const [selectedSection, setSelectedSection] = useState("breakfast"); //  NEW
   const [searchTerm, setSearchTerm] = useState("");
 
   const [menuItems, setMenuItems] = useState([
@@ -354,23 +354,23 @@ function AdminMenu() {
     setMenuItems(updatedItems);
   };
  
-const [lunchMenu, setLunchMenu] = useState([
-    { name: "Tawa Roti", price: 7 },
-    { name: "Plain Paratha", price: 10 },
-    { name: "Laccha Paratha", price: 20 },
-    { name: "Mix Veg", price: 80 },
-    { name: "Matar Paneer", price: 100 },
-    { name: "Paneer Butter Masala", price: 120 },
-    { name: "Veg Noodles", price: 60 },
-    { name: "Paneer Noodles", price: 90 },
-    { name: "Chicken Noodles", price: 110 },
-    { name: "Veg Manchurian", price: 80 },
-    { name: "Paneer Chilli", price: 120 },
-    { name: "Egg Roll", price: 50 },
-    { name: "Chicken Roll", price: 80 },
-    { name: "Veg Thali", price: 70 },
-    { name: "Special Thali", price: 120 },
-    { name: "Veg Biryani",price: 120}
+  const [lunchMenu, setLunchMenu] = useState([
+    { id: 1, name: "Tawa Roti", price: 7, status: "Available" },
+    { id: 2, name: "Plain Paratha", price: 10, status: "Available" },
+    { id: 3, name: "Laccha Paratha", price: 20, status: "Available" },
+    { id: 4, name: "Mix Veg", price: 80, status: "Available" },
+    { id: 5, name: "Matar Paneer", price: 100, status: "Available" },
+    { id: 6, name: "Paneer Butter Masala", price: 120, status: "Available" },
+    { id: 7, name: "Veg Noodles", price: 60, status: "Available" },
+    { id: 8, name: "Paneer Noodles", price: 90, status: "Available" },
+    { id: 9, name: "Chicken Noodles", price: 110, status: "Available" },
+    { id: 10, name: "Veg Manchurian", price: 80, status: "Available" },
+    { id: 11, name: "Paneer Chilli", price: 120, status: "Available" },
+    { id: 12, name: "Egg Roll", price: 50, status: "Available" },
+    { id: 13, name: "Chicken Roll", price: 80, status: "Available" },
+    { id: 14, name: "Veg Thali", price: 70, status: "Available" },
+    { id: 15, name: "Special Thali", price: 120, status: "Available" },
+    { id: 16, name: "Veg Biryani", price: 120, status: "Available" }
   ]);
   const updateLunchStatus = (id, newStatus) => {
     const updated = lunchMenu.map((item) =>
@@ -574,7 +574,7 @@ const [lunchMenu, setLunchMenu] = useState([
             </div>
 
           ))}
-  {/* ✅ LUNCH TABLE */}
+  {/*  LUNCH TABLE */}
   {selectedSection === "lunch" && (
         <div className="lunch-table-section">
 
