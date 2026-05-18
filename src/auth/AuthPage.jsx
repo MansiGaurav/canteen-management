@@ -10,12 +10,33 @@ function AuthPage() {
 
   const handleSignup = (e) => {
     e.preventDefault();
+ //  VALIDATION FUNCTION
+  const validateForm = () => {
+    let errors = {};
 
-    // ✅ GET NAME FROM INPUT
+    // EMAIL
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      errors.email = "Invalid email format";
+    }
+
+    // PHONE
+    if (!/^\d{10}$/.test(phone)) {
+      errors.phone = "Phone must be exactly 10 digits";
+    }
+
+    // PASSWORD
+    if (password.length !== 8) {
+      errors.password = "Password must be exactly 8 characters";
+    }
+
+    return errors;
+  };
+    //  GET NAME FROM INPUT
     const nameInput = e.target.querySelector("input[type='text']");
     const name = nameInput ? nameInput.value : "User";
 
-    // ✅ STORE NAME
+    //  STORE NAME
     localStorage.setItem("userName", name);
 
     if (role === "admin") {
