@@ -163,3 +163,8 @@
 .auth-box {
   transition: all 0.3s ease;
 }
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+}
