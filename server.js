@@ -9,7 +9,7 @@ import { getRedisAdapter } from "./utils/socket.utils.js"; // Uncomment when Red
 const server = createServer(app);
 
 // Initialize Socket.IO
-const io = new Server(server, {
+export const io = new Server(server, {
     cors: {
         origin: process.env.CORS_ORIGIN.split(","),
         credentials: true

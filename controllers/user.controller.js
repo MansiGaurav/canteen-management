@@ -4,7 +4,7 @@ import ErrorHandler from "../middlewares/error.middleware.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs"
 import crypto from "crypto"
-
+import { OAuth2Client } from "google-auth-library";
 import { User } from "../models/user.model.js";
 //import { destroyOnCloudinary, uploadOnCloudinary } from "../utils/cloudinary.utils.js";
 import mongoose from "mongoose";
@@ -118,7 +118,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
     console.log("Registration data received:", { userName, email, phone, password: "***"});
     
     const requiredFields = [userName, email, phone, password]
-    const checkFields = { email, phone }
+    const checkFields = { email, phone  }
 
     if (requiredFields.some((field) => !field || field.trim() === "")) return next(new ErrorHandler("All fields are required", 400))
     if (password.length < 8) return next(new ErrorHandler("Password must be at least 8 characters long", 400));
@@ -132,50 +132,35 @@ const registerUser = asyncHandler(async (req, res, next) => {
         return next(new ErrorHandler(`User already exist with the same ${duplicateField}: "${checkFields[duplicateField]}"\nPlease try unique one!`, 400))
     }
 
-    /*
-          // Hash Password
-                  const hashedPassword =
-                      await bcrypt.hash(password, 10);
 
-            // Default Role
-            let role = "user";
+      // Default Role
+        let role = "user";
+
+        // If admin secret matches
+        if (
+            adminSecret &&
+            adminSecret === process.env.ADMIN_SECRET
+        ) {
+            role = "admin";
+        }
+           // Create User
+        // const user = await User.create({
+        //     userName,
+        //     email,
+        //     phone,
+        //     password: hashedPassword,
+        //     role
+        // });
     
-            // If admin secret matches
-            if (
-                adminSecret &&
-                adminSecret === process.env.ADMIN_SECRET
-            ) {
-                role = "admin";
-            }
-    
-            // Create User
-            const user = await User.create({
-                userName,
-                email,
-                phone,
-                password: hashedPassword,
-                role
-            });
-    
-            // Generate Token
-            const token = jwt.sign(
-                {
-                    id: user._id,
-                    role: user.role
-                },
-                process.env.JWT_SECRET,
-                {
-                    expiresIn: "7d"
-                }
-            );
-    */
 
     try {
+        // Create User
         const user = await User.create({
-            userName, 
-            email, 
-            phone, 
-            password
+            userName,
+            email,
+            phone,
+            password,
+            role
         })
         await cookieToken(user, res)
         await logActivity(
@@ -655,6 +640,76 @@ const googleAuthCallback = asyncHandler(async (req, res, next) => {
     }
 });
 
+// GOOGLE LOGIN
+// ======================================
+const googleLogin = asyncHandler(
+  async (req, res, next) => {
+
+    try {
+
+      const {
+        credential,
+        role,
+      } = req.body;
+
+
+      // VERIFY GOOGLE TOKEN
+      const ticket = await client.verifyIdToken({
+
+        idToken: credential,
+
+        audience:
+          process.env.GOOGLE_CLIENT_ID,
+      });
+
+
+      const payload = ticket.getPayload();
+
+      const {
+        email,
+        name,
+      } = payload;
+
+
+      // FIND USER
+      let user = await User.findOne({ email });
+
+
+      // CREATE USER IF NOT EXISTS
+      if (!user) {
+
+        user = await User.create({
+          userName: name,
+          email,
+          phone: "0000000000",
+          password: "google-auth-user",
+          role: role || "user",
+        });
+      }
+
+
+      // SEND TOKEN COOKIE
+      cookieToken(user, res);
+
+
+      res.status(200).json({
+        success: true,
+        message: "Google Login Successful",
+        user,
+      });
+
+    } catch (error) {
+
+      return next(
+        new ErrorHandler(
+          error.message,
+          500
+        )
+      );
+    }
+  }
+);
+
 // *Exports
 export {
     refreshAccessToken,
@@ -668,5 +723,6 @@ export {
     changeCurrentPassword,
     updateUserProfile,
     deleteUser,
-    googleAuthCallback
+    googleAuthCallback,
+    googleLogin
 }

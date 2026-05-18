@@ -3,14 +3,14 @@ import ErrorHandler from "../middlewares/error.middleware.js";
 
 import { User } from "../models/user.model.js";
 import Food from "../models/food.model.js";
-//import Order from "../models/order.model.js";
+import Order from "../models/order.model.js";
 
 
 
 // ======================================
 // DASHBOARD STATS
 // ======================================
-export const getDashboardStats = asyncHandler(
+export const getDashboardStats = asyncHandler(     
     async (req, res, next) => {
 
         const totalUsers = await User.countDocuments();

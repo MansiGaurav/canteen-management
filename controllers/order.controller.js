@@ -4,6 +4,71 @@ import crypto from "crypto";
 
 import Order from "../models/order.model.js";
 import Food from "../models/food.model.js";
+import Notification from "../models/notification.model.js";
+
+import { io } from "../server.js";
+//await order.save();
+// const order = await Order.findById(
+//     req.params.id
+// );
+
+// order.orderStatus = status;
+
+// await order.save();
+
+
+
+// // CREATE NOTIFICATION
+// const notification =
+// await Notification.create({
+
+//     user: order.user,
+
+//     title: "Order Update",
+
+//     message:
+//       `Your order ${order.tokenNumber} is now ${status}`,
+
+//     type: "order",
+
+//     order: order._id
+
+// });
+
+
+
+// // REALTIME EMIT
+// io.to(order.user.toString()).emit(
+//     "newNotification",
+//     notification
+// );/*
+// CREATE NOTIFICATION
+// const notification =
+//     await Notification.create({
+
+//         user: order.user,
+
+//         title: "Order Update",
+
+//         message:
+//             `Your order ${order.tokenNumber} is now ${status}`,
+
+//         type: "order",
+
+//         order: order._id
+
+//     });
+
+
+
+// // REALTIME EMIT
+// io.to(order.user.toString()).emit(
+//     "newNotification",
+//     {
+//         success: true,
+//         notification
+//     }
+// );*/
 
 //===================================
 //  GENERATE UNIQUE TOKEN
@@ -85,6 +150,7 @@ export const createOrder = asyncHandler(
                 quantity: item.quantity,
                 price: food.price
             });
+            io.emit("newOrder", order);
         }
 /*
         // GENERATE TOKEN NUMBER
@@ -333,55 +399,79 @@ export const getActiveOrders = asyncHandler(
 
 
 // ======================================
-// UPDATE ORDER STATUS (ADMIN)
+// UPDATE ORDER STATUS
 // ======================================
-export const updateOrderStatus = asyncHandler(
-    async (req, res, next) => {
+export const updateOrderStatus =
+asyncHandler(async (req, res, next) => {
 
-        const { status } = req.body;
+    const { status } = req.body;
 
-        const order = await Order.findById(
-            req.params.id
+
+
+    // FIND ORDER
+    const order = await Order.findById(
+        req.params.id
+    );
+
+
+
+    // CHECK ORDER
+    if (!order) {
+
+        return next(
+            new ErrorHandler(
+                "Order not found",
+                404
+            )
         );
-
-        if (!order) {
-
-            return next(
-                new ErrorHandler(
-                    "Order not found",
-                    404
-                )
-            );
-        }
-
-        order.orderStatus = status;
-
-        // READY TIME
-        if (status === "Ready") {
-
-            order.readyAt = Date.now();
-        }
-
-        // COMPLETED TIME
-        if (status === "Completed") {
-
-            order.completedAt = Date.now();
-
-            order.isActive = false;
-        }
-
-        await order.save();
-
-        res.status(200).json({
-            success: true,
-            message: "Order status updated",
-            order
-        });
     }
-);
 
 
 
+    // UPDATE STATUS
+    order.orderStatus = status;
+
+
+
+    // SAVE
+    await order.save();
+
+
+
+    // CREATE NOTIFICATION
+    const notification =
+        await Notification.create({
+
+            user: order.user,
+
+            title: "Order Update",
+
+            message:
+                `Your order ${order.tokenNumber} is now ${status}`,
+
+            type: "order",
+
+            order: order._id
+
+        });
+
+
+
+    // REALTIME SOCKET EMIT
+    io.to(order.user.toString()).emit(
+        "newNotification",
+        notification
+    );
+
+
+
+    res.status(200).json({
+        success: true,
+        message: "Order status updated",
+        order
+    });
+
+});
 // ======================================
 // GET TODAY ORDERS
 // ======================================

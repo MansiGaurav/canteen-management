@@ -9,8 +9,10 @@ import { errorMiddleware } from "./middlewares/error.middleware.js";
 import userRouter from "./routes/user.route.js"
 import foodRoutes from "./routes/food.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
-import authRoutes from "./routes/auth.routes.js";
-import orderRoutes from "./routes/order.routes.js"
+//import authRoutes from "./routes/auth.routes.js";
+import orderRoutes from "./routes/order.routes.js";
+import notificationRoutes from "./routes/notification.routes.js";
+
 const app = express();
 config({ path: "./.env" })
 app.use(express.json({ limit: "256kb" }));
@@ -54,11 +56,12 @@ app.get("/", (req, res) => {
 });
 
 // ================= Routes ===================
-app.use("/api/v1/users", userRouter);
-app.use("/api/v1/foods", foodRoutes);
-app.use("/api/v1/admin", adminRoutes);
-app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/orders" , orderRoutes);
+app.use("/api/v1/users", userRouter); //CHECKED
+app.use("/api/v1/foods", foodRoutes); //CHECKED
+app.use("/api/v1/admin", adminRoutes); //CHECKED
+//app.use("/api/v1/auth", authRoutes);   //NOT NEED ONLY REGISTER ADMIN ROUTE NEEDED
+app.use("/api/v1/orders" , orderRoutes); //CHECKED
+app.use("/api/v1/notifications", notificationRoutes); //CHECKED
 
 app.use(errorMiddleware)
 // *End-Of-Neccessary-Middlewares
