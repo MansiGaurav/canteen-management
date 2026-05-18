@@ -6,11 +6,16 @@ import "./AuthPage.css";
 function AuthPage() {
   const [role, setRole] = useState("user");
   const [isLogin, setIsLogin] = useState(false);
+
+  //  NEW STATES
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState({});
+
   const navigate = useNavigate();
 
-  const handleSignup = (e) => {
-    e.preventDefault();
- //  VALIDATION FUNCTION
+  //  VALIDATION FUNCTION
   const validateForm = () => {
     let errors = {};
 
@@ -32,11 +37,21 @@ function AuthPage() {
 
     return errors;
   };
-    //  GET NAME FROM INPUT
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validateForm();
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    //  GET NAME
     const nameInput = e.target.querySelector("input[type='text']");
     const name = nameInput ? nameInput.value : "User";
 
-    //  STORE NAME
     localStorage.setItem("userName", name);
 
     if (role === "admin") {
@@ -53,9 +68,6 @@ function AuthPage() {
       phone: "9876543210",
     };
 
-    console.log("Google User:", fakeUser);
-
-    // ✅ STORE GOOGLE USER NAME
     localStorage.setItem("userName", fakeUser.name);
 
     if (role === "admin") {
@@ -69,13 +81,11 @@ function AuthPage() {
     <div className="auth-container">
       <div className="auth-box">
 
-        {/* TITLE */}
         <h2>{isLogin ? "Sign In" : "Create Account"}</h2>
         <p className="subtitle">
           {isLogin ? "Welcome back" : "Join your cafeteria dashboard"}
         </p>
 
-        {/* ROLE SWITCH */}
         {!isLogin && (
           <div className="role-switch">
             <button
@@ -94,16 +104,42 @@ function AuthPage() {
           </div>
         )}
 
-        {/* FORM */}
         <form onSubmit={handleSignup}>
 
           {/* SIGNUP */}
           {!isLogin && (
             <>
               <input type="text" placeholder="Enter Name" required />
-              <input type="email" placeholder="Enter Email" required />
-              <input type="password" placeholder="Enter Password" required />
-              <input type="tel" placeholder="Enter Phone Number" required />
+
+              {/* EMAIL */}
+              <input
+                type="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              {errors.email && <p className="error">{errors.email}</p>}
+
+              {/* PASSWORD */}
+              <input
+                type="password"
+                placeholder="Enter Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              {errors.password && <p className="error">{errors.password}</p>}
+
+              {/* PHONE */}
+              <input
+                type="tel"
+                placeholder="Enter Phone Number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+              />
+              {errors.phone && <p className="error">{errors.phone}</p>}
 
               {role === "admin" && (
                 <input
@@ -161,7 +197,6 @@ function AuthPage() {
             </>
           )}
 
-          {/* SWITCH */}
           <p className="login-text">
             {isLogin ? (
               <>
