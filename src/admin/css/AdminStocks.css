@@ -1,0 +1,102 @@
+.admin-stocks-page {
+  min-height: 100vh;
+  padding: 30px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/*  DARK OVERLAY */
+.admin-stocks-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.admin-stocks-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+/*  HEADING */
+.stock-heading {
+  color: #ffd000;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/*  ALERT */
+.alert-box {
+  background: #ffcc00;
+  color: black;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/*  TABLE */
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+}
+
+.stock-table th,
+.stock-table td {
+  padding: 12px;
+  text-align: center;
+  color: white;
+}
+
+.stock-table th {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/*  STATUS */
+.stock-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* GREEN */
+
+.stock-status.in-stock {
+  background: #28a745;
+  color: white;
+}
+
+.stock-status.low-stock {
+  background: orange;
+  color: black;
+}
+
+.stock-status.out-of-stock {
+  background: red !important;
+  color: white !important;
+}
+/*  BUTTONS */
+.btn-group button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-group button:first-child {
+  background: #ff4d4d;
+  color: white;
+}
+
+.btn-group button:last-child {
+  background: #28a745;
+  color: white;
+}
