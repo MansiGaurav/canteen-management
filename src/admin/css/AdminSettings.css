@@ -1,0 +1,88 @@
+.admin-settings-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+}
+
+/*  BIG CARD */
+.settings-card {
+  background: rgba(0, 0, 50, 0.85);
+
+  width: 600px;             
+  padding: 45px 40px;    
+
+  border-radius: 22px;
+
+  backdrop-filter: blur(12px);
+  color: white;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* TITLE */
+.settings-card h2 {
+  text-align: center;
+  margin-bottom: 30px;
+
+  color: #ffd000;
+  font-size: 28px;
+}
+
+/*  EACH ROW */
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 22px;
+  padding: 18px 22px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  transition: 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.setting-item:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* TEXT */
+.setting-item span {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/*  BUTTON */
+.setting-item button {
+  padding: 8px 20px;
+  font-size: 15px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #ffd000;
+  color: black;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.setting-item button:hover {
+  transform: scale(1.05);
+}
+
+/*  DANGER BUTTON */
+.setting-item.danger button {
+  background: #ff3b3b;
+  color: white;
+}
