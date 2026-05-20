@@ -8,7 +8,7 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-/* 🔥 DARK OVERLAY */
+/*  DARK OVERLAY */
 .user-settings::before {
   content: "";
   position: absolute;
