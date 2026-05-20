@@ -1,34 +1,68 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa"; // ✅ NEW
+import { FaArrowLeft } from "react-icons/fa";
+import { FaMoneyBillWave, FaQrcode } from "react-icons/fa";
 import "../css/Payment.css";
+
+import upiQR from "../assets/upi-qr.png";
 
 function Payment() {
 
-  // ✅ GET TOTAL FROM CART
   const location = useLocation();
   const total = location.state?.total || 0;
+  const cart = location.state?.cart || [];
 
-  // ✅ STATES
+  if (!cart || cart.length === 0) {
+    return (
+      <div className="payment-page">
+        <h2 style={{ color: "white", textAlign: "center" }}>
+          No items in cart
+        </h2>
+      </div>
+    );
+  }
+
   const [selectedPlace, setSelectedPlace] = useState("Cafeteria");
   const [selectedPayment, setSelectedPayment] = useState("Cash");
   const [orderPlaced, setOrderPlaced] = useState(false);
 
   const navigate = useNavigate();
 
-  // ✅ BACK FUNCTION (NEW)
   const handleBack = () => {
-    if (location.pathname === "/home") {
-      navigate("/register"); // change if your route name is different
-    } else {
-      navigate(-1);
-    }
+    navigate(-1);
   };
 
-  // ✅ HANDLE ORDER
+  //  FINAL FIXED FUNCTION
   const handleOrder = () => {
+
+    const status = localStorage.getItem("canteenStatus");
+    console.log("STATUS INSIDE FUNCTION:", status); // 👈 ADD THIS
+  
+    if (status === "closed") {
+      alert("🚫 Canteen is currently closed");
+      return;
+    }
+
     const token = Math.floor(1000 + Math.random() * 9000);
+
+    const existingOrders =
+      JSON.parse(localStorage.getItem("orders")) || [];
+
+    const newOrder = {
+      id: Date.now(),
+      items: cart,
+      total,
+      place: selectedPlace,
+      payment: selectedPayment,
+      token,
+      time: new Date().toLocaleString(),
+      isRead: false,
+    };
+
+    const updatedOrders = [...existingOrders, newOrder];
+
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
 
     navigate("/token", {
       state: {
@@ -36,7 +70,7 @@ function Payment() {
         total,
         place: selectedPlace,
         payment: selectedPayment,
-        cartItems: location.state?.cart || [],
+        cartItems: cart,
       },
     });
   };
@@ -44,14 +78,12 @@ function Payment() {
   return (
     <div className="payment-page">
 
-      {/* 🔥 BACK BUTTON (NEW) */}
       <button onClick={handleBack} className="back-btn">
         <FaArrowLeft />
       </button>
 
       <div className="payment-card">
 
-        {/* 🔥 BEFORE ORDER */}
         {!orderPlaced ? (
           <>
             <h2>Checkout</h2>
@@ -75,16 +107,43 @@ function Payment() {
             <div className="section">
               <p className="section-title">Payment Method</p>
 
-              {["Cash", "UPI"].map((method) => (
-                <div
-                  key={method}
-                  className={`option-box ${selectedPayment === method ? "active" : ""}`}
-                  onClick={() => setSelectedPayment(method)}
-                >
-                  {method}
-                </div>
-              ))}
+              <div
+                className={`payment-option ${
+                  selectedPayment === "Cash" ? "active" : ""
+                }`}
+                onClick={() => setSelectedPayment("Cash")}
+              >
+                <FaMoneyBillWave className="payment-icon" />
+                <span>Cash</span>
+              </div>
+
+              <div
+                className={`payment-option ${
+                  selectedPayment === "UPI" ? "active" : ""
+                }`}
+                onClick={() => setSelectedPayment("UPI")}
+              >
+                <FaQrcode className="payment-icon" />
+                <span>UPI</span>
+              </div>
             </div>
+
+            {/* QR */}
+            {selectedPayment === "UPI" && (
+              <div className="upi-qr-section">
+                <p className="section-title">Scan & Pay</p>
+
+                <img
+                  src={upiQR}
+                  alt="UPI QR"
+                  className="upi-qr-image"
+                />
+
+                <p className="upi-note">
+                  Scan this QR using any UPI app
+                </p>
+              </div>
+            )}
 
             {/* TOTAL */}
             <div className="total-section">
@@ -93,9 +152,13 @@ function Payment() {
             </div>
 
             {/* BUTTON */}
-            <button className="place-order-btn" onClick={handleOrder}>
+            <button
+              className="place-order-btn"
+              onClick={handleOrder}
+            >
               Place Order
             </button>
+
           </>
         ) : (
           <div className="success-box">
@@ -107,7 +170,6 @@ function Payment() {
         )}
 
       </div>
-
     </div>
   );
 }
