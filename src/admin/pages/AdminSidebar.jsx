@@ -18,7 +18,9 @@ function AdminSidebar() {
   return (
     <div className="admin-sidebar">
 
-      <h1 className="admin-logo">Cafeteria</h1>
+<h1 className="admin-logo">
+  CHILI'S <br /> FOOD POINT
+</h1>
 
       <ul className="admin-menu">
 
@@ -63,7 +65,7 @@ function AdminSidebar() {
           Stocks
         </NavLink>
 
-        <NavLink
+        {/* <NavLink
           to="/admin/offers"
           className={({ isActive }) =>
             isActive ? "sidebar-item active" : "sidebar-item"
@@ -71,9 +73,9 @@ function AdminSidebar() {
         >
           <FaTags />
           Offers
-        </NavLink>
+        </NavLink> */}
 
-        <NavLink
+        {/* <NavLink
           to="/admin/payments"
           className={({ isActive }) =>
             isActive ? "sidebar-item active" : "sidebar-item"
@@ -81,9 +83,9 @@ function AdminSidebar() {
         >
           <FaMoneyBill />
           Payments
-        </NavLink>
+        </NavLink> */}
 
-        <NavLink
+        {/* <NavLink
           to="/admin/tokens"
           className={({ isActive }) =>
             isActive ? "sidebar-item active" : "sidebar-item"
@@ -91,9 +93,9 @@ function AdminSidebar() {
         >
           <FaTicketAlt />
           Tokens
-        </NavLink>
+        </NavLink> */}
 
-        <NavLink
+        {/* <NavLink
           to="/admin/analytics"
           className={({ isActive }) =>
             isActive ? "sidebar-item active" : "sidebar-item"
@@ -101,7 +103,7 @@ function AdminSidebar() {
         >
           <FaChartBar />
           Analytics
-        </NavLink>
+        </NavLink> */}
 
         <NavLink
           to="/admin/settings"
