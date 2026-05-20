@@ -16,18 +16,18 @@ function UserSettings() {
     localStorage.getItem("theme") === "dark"
   );
 
-  // 🔥 LOAD STATUS
+  //  LOAD STATUS
   useEffect(() => {
     const status = localStorage.getItem("canteenStatus") || "open";
     setCanteenStatus(status);
   }, []);
 
-  // 🔥 BACK BUTTON
+  //  BACK BUTTON
   const handleBack = () => {
     navigate("/home"); // go to dashboard
   };
 
-  // 🔥 CLEAR CART
+  //  CLEAR CART
   const clearCart = () => {
     const confirmClear = window.confirm("Clear your cart?");
     if (confirmClear) {
@@ -46,12 +46,12 @@ function UserSettings() {
       }}
     >
 
-      {/* 🔙 BACK BUTTON */}
+      {/*  BACK BUTTON */}
       <button className="back-btn" onClick={handleBack}>
         <FaArrowLeft />
       </button>
 
-      {/* 🔥 SETTINGS CARD */}
+      {/*  SETTINGS CARD */}
       <div className="settings-card">
 
         <h2>⚙️ User Settings</h2>
