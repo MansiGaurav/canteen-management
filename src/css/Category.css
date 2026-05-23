@@ -1,5 +1,47 @@
+/*  ADDED KEYFRAMES */
+@keyframes categoryFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes categoryPop {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes iconBounce {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================== */
+
 .category-section{
   margin-top: 22px;
+
+  /*  SECTION FADE */
+  animation: categoryFade 0.6s ease;
 }
 
 .category-title{
@@ -9,16 +51,17 @@
   font-weight: 700;
 
   margin-bottom: 18px;
+
+  /*  TITLE FADE */
+  animation: categoryFade 0.7s ease;
 }
-
-
 
 .category-container{
   display: flex;
   gap: 18px;
 }
 
-
+/* CARD */
 .category-card{
   width: 110px;
   height: 105px;
@@ -35,9 +78,10 @@
   cursor: pointer;
 
   transition: 0.3s;
+
+  /*  CARD POP */
+  animation: categoryPop 0.4s ease;
 }
-
-
 
 .category-card:hover{
   transform: translateY(-4px);
@@ -47,16 +91,13 @@
   color: black;
 }
 
-
-
 .category-card.active{
   background: #ffd000;
 
   color: black;
 }
 
-
-
+/* IMAGE */
 .category-image{
   width: 42px;
   height: 42px;
@@ -64,14 +105,16 @@
   object-fit: contain;
 
   margin-bottom: 10px;
+
+  /*  IMAGE ANIMATION */
+  animation: iconBounce 0.5s ease;
 }
-
-
 
 .category-card p{
   font-size: 18px;
   font-weight: 600;
 }
+
 .category-card{
   width: 110px;
   height: 105px;
@@ -90,13 +133,9 @@
   transition: 0.3s;
 }
 
-
-
 .category-card:hover{
   transform: translateY(-4px);
 }
-
-
 
 .category-card.active{
   background: #ffd000;
@@ -104,15 +143,15 @@
   color: black;
 }
 
-
-
+/* ICON */
 .category-icon{
   font-size: 38px;
 
   margin-bottom: 12px;
+
+  /*  ICON BOUNCE */
+  animation: iconBounce 0.5s ease;
 }
-
-
 
 .category-card p{
   font-size: 18px;
