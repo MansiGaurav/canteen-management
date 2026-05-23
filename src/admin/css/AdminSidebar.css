@@ -1,71 +1,124 @@
+/*  ADDED KEYFRAMES */
+@keyframes sidebarSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes itemFade {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ================= SIDEBAR ================= */
+
 .admin-sidebar {
-  width: 280px;              /* 🔥 bigger sidebar */
+  width: 260px;
   min-height: 100vh;
   background: #020a3a;
 
-  padding: 40px 25px;
+  padding: 30px 20px;
 
   display: flex;
   flex-direction: column;
+
+  /*  SIDEBAR SLIDE */
+  animation: sidebarSlide 0.5s ease;
 }
 
 /* LOGO */
 .admin-logo {
   color: #ffd000;
-  font-size: 36px;           /* 🔥 bigger */
+  font-size: 30px;
   font-weight: 800;
-  
 
-  margin-bottom: 60px;
+  text-align: center;
+  line-height: 1.2;
+
+  margin-bottom: 50px;
+  letter-spacing: 1.5px;
+
+  /*  LOGO POP */
+  animation: pop 0.5s ease;
 }
 
 /* MENU */
 .admin-menu {
   display: flex;
   flex-direction: column;
-  gap: 22px;                 /* 🔥 more spacing */
+  gap: 18px;
 }
 
-/* NORMAL ITEM */
+/* ITEM */
 .sidebar-item {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
 
-  padding: 16px 20px;        /* 🔥 bigger box */
+  padding: 14px 16px;
 
-  border-radius: 14px;
+  border-radius: 12px;
 
   text-decoration: none;
   color: #cbd5e1;
 
-  font-size: 20px;           /* 🔥 bigger text */
+  font-size: 17px;
   font-weight: 600;
 
   transition: all 0.25s ease;
+
+  /*  ITEM FADE */
+  animation: itemFade 0.4s ease;
 }
 
-/* ICON SIZE */
+/* ICON */
 .sidebar-item svg {
-  font-size: 22px;           /* 🔥 bigger icons */
+  font-size: 18px;
+  min-width: 22px;
+
+  /*  ICON POP */
+  animation: pop 0.3s ease;
 }
 
 /* HOVER */
 .sidebar-item:hover {
   background: rgba(255, 255, 255, 0.08);
   color: white;
+  transform: translateX(6px) scale(1.02);
 }
-.sidebar-item:hover {
-  transform: translateX(5px);
-}
+
 /* ACTIVE */
 .sidebar-item.active {
   background: #ffd000;
   color: black;
-
   font-weight: 700;
 
   box-shadow: 0 6px 18px rgba(255, 208, 0, 0.3);
+
+  /*  ACTIVE POP */
+  animation: pop 0.3s ease;
 }
 
 /* ACTIVE ICON */
