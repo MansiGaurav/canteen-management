@@ -1,3 +1,39 @@
+/*  ADDED KEYFRAMES */
+@keyframes navbarFade {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconPop {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================== */
+
 .navbar{
   display: flex;
   justify-content: space-between;
@@ -10,9 +46,10 @@
   border-radius: 16px;
 
   min-height: 78px;
+
+  /*  NAVBAR ENTRY */
+  animation: navbarFade 0.5s ease;
 }
-
-
 
 /* LEFT SIDE */
 
@@ -21,6 +58,7 @@
   align-items: center;
   gap: 12px;
 }
+
 .back-btn {
   width: 40px;
   height: 40px;
@@ -38,6 +76,9 @@
   cursor: pointer;
   font-size: 16px;
   transition: 0.3s;
+
+  /*  BUTTON POP */
+  animation: iconPop 0.4s ease;
 }
 
 .back-btn:hover {
@@ -54,6 +95,9 @@
   line-height: 1;
 
   margin: 0;
+
+  /*  TEXT FADE */
+  animation: navbarFade 0.6s ease;
 }
 
 .navbar-text{
@@ -64,16 +108,12 @@
   margin: 0;
 }
 
-
-
 /* RIGHT */
 .navbar-right{
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
-
 
 /* SEARCH */
 .search-bar{
@@ -91,9 +131,10 @@
   padding: 0 16px;
 
   font-size: 14px;
+
+  /*  SEARCH FADE */
+  animation: navbarFade 0.7s ease;
 }
-
-
 
 /* ICONS */
 .nav-icon{
@@ -110,14 +151,15 @@
 
   color: white;
   font-size: 15px;
+
+  /*  ICON POP */
+  animation: iconPop 0.4s ease;
 }
 
 /* NOTIFICATION */
 .notification-wrapper{
   position: relative;
 }
-
-
 
 /* BOX */
 .notification-box{
@@ -135,9 +177,10 @@
   padding: 14px;
 
   z-index: 100;
+
+  /*  DROPDOWN ANIMATION */
+  animation: dropdownFade 0.3s ease;
 }
-
-
 
 /* TEXT */
 .notification-box p{
@@ -163,27 +206,19 @@ body.light-theme{
   background: #f4f7ff;
 }
 
-
-
 /* NAVBAR */
 body.light-theme .navbar{
   background: white;
 }
-
-
 
 /* TEXT */
 body.light-theme .navbar-heading{
   color: black;
 }
 
-
-
 body.light-theme .navbar-text{
   color: #4b5563;
 }
-
-
 
 /* SEARCH */
 body.light-theme .search-bar{
@@ -194,8 +229,6 @@ body.light-theme .search-bar{
   border: 1px solid #d1d5db;
 }
 
-
-
 /* CATEGORY */
 body.light-theme .category-card{
   background: white;
@@ -203,43 +236,31 @@ body.light-theme .category-card{
   color: black;
 }
 
-
-
 /* FOOD CARD */
 body.light-theme .food-card{
   background: white;
 }
-
-
 
 /* FOOD TEXT */
 body.light-theme .food-content h3{
   color: black;
 }
 
-
-
 /* SIDEBAR */
 body.light-theme .sidebar{
   background: white;
 }
-
-
 
 /* SIDEBAR TEXT */
 body.light-theme .menu li{
   color: black;
 }
 
-
-
 /* CART */
 body.light-theme .cart-section,
 body.light-theme .summary-section{
   background: white;
 }
-
-
 
 /* CART TEXT */
 body.light-theme .cart-section h2,
@@ -259,7 +280,50 @@ body.light-theme .total-row h3{
   object-fit: cover;
 
   border: 2px solid #ffb800;
+
+  /*  AVATAR POP */
+  animation: iconPop 0.5s ease;
 }
+
+.avatar-wrapper {
+  position: relative;
+}
+
+/* DROPDOWN */
+.profile-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: #1e2a4a;
+  border-radius: 10px;
+  padding: 10px;
+  width: 150px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+
+  /*  DROPDOWN FADE */
+  animation: dropdownFade 0.3s ease;
+}
+
+.profile-dropdown p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: white;
+  padding: 6px 10px;
+  margin: 4px 0;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 13px;
+
+  transition: all 0.3s ease;
+}
+
+.profile-dropdown p:hover {
+  background: #2e3b5f;
+  transform: translateX(5px);
+}
+
 /* NAVBAR LAYOUT */
 .navbar {
   display: flex;
@@ -295,6 +359,8 @@ body.light-theme .total-row h3{
   cursor: pointer;
 
   transition: 0.3s;
+
+  animation: iconPop 0.4s ease;
 }
 
 .back-btn:hover {
@@ -307,6 +373,8 @@ body.light-theme .total-row h3{
   font-size: 20px;
   font-weight: 700;
   color: #ffd000;
+
+  animation: navbarFade 0.6s ease;
 }
 
 /* OPTIONAL: highlight name only */
@@ -334,12 +402,16 @@ body.light-theme .total-row h3{
   border-radius: 8px;
   border: none;
   outline: none;
+
+  animation: navbarFade 0.7s ease;
 }
 
 /* ICONS */
 .nav-icon {
   font-size: 18px;
   cursor: pointer;
+
+  animation: iconPop 0.4s ease;
 }
 
 /* AVATAR */
@@ -348,7 +420,10 @@ body.light-theme .total-row h3{
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
+
+  animation: iconPop 0.5s ease;
 }
+
 .navbar-heading {
   font-size: 22px;
   font-weight: 700;
@@ -363,6 +438,25 @@ body.light-theme .total-row h3{
 .user-name {
   color: rgb(219, 191, 30);
   margin-left: 5px;  
-  margin-right: 5px;   
+  margin-right: 5px;  
   letter-spacing: 0.5px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+}
+
+.profile-header img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.profile-header span {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
 }
