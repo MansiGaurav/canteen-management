@@ -1,3 +1,48 @@
+/*  ADDED KEYFRAMES */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* ================= MAIN BACKGROUND ================= */
 
 .admin-menu-page {
@@ -8,6 +53,9 @@
 
   padding: 30px;
   position: relative;
+
+  /*  PAGE LOAD */
+  animation: fadeUp 0.6s ease;
 }
 
 /* LIGHT OVERLAY */
@@ -32,6 +80,8 @@
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   margin-bottom: 40px;
+
+  animation: fadeUp 0.7s ease;
 }
 
 .admin-menu-heading {
@@ -55,6 +105,9 @@
   font-size: 16px;
 
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+
+  /*  INPUT FADE */
+  animation: fadeUp 0.8s ease;
 }
 
 .admin-menu-top button {
@@ -74,6 +127,8 @@
 
   cursor: pointer;
   transition: 0.3s;
+
+  animation: pop 0.6s ease;
 }
 
 .admin-menu-top button:hover {
@@ -86,6 +141,8 @@
   display: flex;
   gap: 24px;
   margin-bottom: 35px;
+
+  animation: fadeUp 0.8s ease;
 }
 
 .timeline-box {
@@ -96,6 +153,9 @@
   text-align: center;
   transition: 0.3s;
   cursor: pointer;
+
+  /*  POP */
+  animation: pop 0.5s ease;
 }
 
 .active-timeline {
@@ -114,7 +174,7 @@
 }
 
 .timeline-box:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
 }
 
 /* ================= CATEGORY ================= */
@@ -123,6 +183,8 @@
   display: flex;
   gap: 16px;
   margin-bottom: 30px;
+
+  animation: slideLeft 0.7s ease;
 }
 
 .admin-category-section button {
@@ -140,6 +202,8 @@
 
   cursor: pointer;
   transition: 0.3s;
+
+  animation: pop 0.5s ease;
 }
 
 .active-category {
@@ -153,6 +217,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+
+  animation: fadeUp 0.9s ease;
 }
 
 /* ================= CARD ================= */
@@ -167,10 +233,13 @@
   border: 1px solid rgba(255,255,255,0.05);
   display: flex;
   flex-direction: column;
+
+  /*  CARD POP */
+  animation: pop 0.5s ease;
 }
 
 .admin-food-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) scale(1.02);
   border: 1px solid #ffd000;
   box-shadow: 0 0 18px rgba(255,208,0,0.18);
 }
@@ -182,12 +251,16 @@
   object-fit: contain;
   background: #ffffff;
   padding: 25px;
+
+  animation: fadeUp 0.6s ease;
 }
 
 /* CONTENT */
 .food-content {
   padding: 18px;
   text-align: center;
+
+  animation: fadeUp 0.7s ease;
 }
 
 .food-content h2 {
@@ -230,11 +303,15 @@
   color: white;
 
   padding: 0 10px;
+
+  transition: 0.2s;
 }
 
-/* ================= LUNCH TABLE ================= */
+.food-content select:hover {
+  transform: scale(1.02);
+}
 
-/* ================= LUNCH FULL SECTION ================= */
+/* ================= LUNCH SECTION ================= */
 
 .lunch-table-section {
   width: 100%;
@@ -249,6 +326,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  animation: fadeUp 0.8s ease;
 }
 
 /* TITLE */
@@ -264,7 +343,7 @@
 .menu-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 15px; /* 🔥 spacing between rows */
+  border-spacing: 0 15px;
 }
 
 /* HEADER */
@@ -281,6 +360,9 @@
 .menu-table tr {
   background: rgba(255, 255, 255, 0.03);
   border-radius: 15px;
+
+  /*  ROW FADE */
+  animation: fadeUp 0.5s ease;
 }
 
 /* CELLS */
