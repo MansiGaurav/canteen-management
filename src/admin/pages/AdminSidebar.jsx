@@ -1,27 +1,35 @@
 import "../css/AdminSidebar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import {
   FaThLarge,
   FaClipboardList,
   FaHamburger,
   FaBoxes,
-  FaTags,
-  FaMoneyBill,
-  FaTicketAlt,
-  FaChartBar,
   FaCog,
   FaSignOutAlt
 } from "react-icons/fa";
 
 function AdminSidebar() {
+  const navigate = useNavigate();
+
   return (
     <div className="admin-sidebar">
 
-<h1 className="admin-logo">
-  CHILI'S <br /> FOOD POINT
-</h1>
+      {/* 🔙 BACK BUTTON */}
+      <button
+        className="sidebar-back-btn"
+        onClick={() => navigate(-1)}
+      >
+        ← 
+      </button>
 
+      {/* LOGO */}
+      <h1 className="admin-logo">
+        CHILI'S <br /> FOOD POINT
+      </h1>
+
+      {/* MENU */}
       <ul className="admin-menu">
 
         <NavLink
@@ -64,46 +72,6 @@ function AdminSidebar() {
           <FaBoxes />
           Stocks
         </NavLink>
-
-        {/* <NavLink
-          to="/admin/offers"
-          className={({ isActive }) =>
-            isActive ? "sidebar-item active" : "sidebar-item"
-          }
-        >
-          <FaTags />
-          Offers
-        </NavLink> */}
-
-        {/* <NavLink
-          to="/admin/payments"
-          className={({ isActive }) =>
-            isActive ? "sidebar-item active" : "sidebar-item"
-          }
-        >
-          <FaMoneyBill />
-          Payments
-        </NavLink> */}
-
-        {/* <NavLink
-          to="/admin/tokens"
-          className={({ isActive }) =>
-            isActive ? "sidebar-item active" : "sidebar-item"
-          }
-        >
-          <FaTicketAlt />
-          Tokens
-        </NavLink> */}
-
-        {/* <NavLink
-          to="/admin/analytics"
-          className={({ isActive }) =>
-            isActive ? "sidebar-item active" : "sidebar-item"
-          }
-        >
-          <FaChartBar />
-          Analytics
-        </NavLink> */}
 
         <NavLink
           to="/admin/settings"
