@@ -1,8 +1,27 @@
-/*  ADDED KEYFRAMES */
-@keyframes sidebarSlide {
+/* ================= SIDEBAR ================= */
+.admin-sidebar {
+  width: 260px;
+  min-height: 100vh;
+
+  background: #020a3a;
+
+  padding: 20px 18px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  /*  ANIMATION */
+  animation: sidebarFade 0.6s ease;
+}
+
+/* ================= KEYFRAMES ================= */
+
+/* SIDEBAR LOAD */
+@keyframes sidebarFade {
   from {
     opacity: 0;
-    transform: translateX(-40px);
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
@@ -10,20 +29,22 @@
   }
 }
 
-@keyframes itemFade {
+/* MENU ITEMS SLIDE */
+@keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateX(-15px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
+/* BUTTON POP */
 @keyframes pop {
   from {
-    transform: scale(0.85);
+    transform: scale(0.8);
     opacity: 0;
   }
   to {
@@ -32,46 +53,72 @@
   }
 }
 
-/* ================= SIDEBAR ================= */
-
-.admin-sidebar {
-  width: 260px;
-  min-height: 100vh;
-  background: #020a3a;
-
-  padding: 30px 20px;
-
-  display: flex;
-  flex-direction: column;
-
-  /*  SIDEBAR SLIDE */
-  animation: sidebarSlide 0.5s ease;
+/* GLOW PULSE */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(255,208,0,0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255,208,0,0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255,208,0,0.4);
+  }
 }
 
-/* LOGO */
+/* ================= BACK BUTTON ================= */
+.sidebar-back-btn {
+  width: 42px;
+  height: 42px;
+
+  background: #ffd000;
+  color: black;
+
+  border: none;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-bottom: 15px;
+
+  animation: pop 0.4s ease;
+
+  transition: 0.3s;
+}
+
+.sidebar-back-btn:hover {
+  background: #ffbf00;
+  transform: scale(1.1);
+}
+
+/* ================= LOGO ================= */
 .admin-logo {
   color: #ffd000;
+
   font-size: 30px;
   font-weight: 800;
 
-  text-align: center;
   line-height: 1.2;
+  letter-spacing: 1px;
 
-  margin-bottom: 50px;
-  letter-spacing: 1.5px;
-
-  /*  LOGO POP */
-  animation: pop 0.5s ease;
+  margin-bottom: 35px;
 }
 
-/* MENU */
+/* ================= MENU ================= */
 .admin-menu {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
 }
 
-/* ITEM */
+/* ================= MENU ITEM ================= */
 .sidebar-item {
   display: flex;
   align-items: center;
@@ -79,34 +126,32 @@
 
   padding: 14px 16px;
 
-  border-radius: 12px;
+  border-radius: 14px;
 
-  text-decoration: none;
   color: #cbd5e1;
 
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
+
+  text-decoration: none;
 
   transition: all 0.25s ease;
 
-  /*  ITEM FADE */
-  animation: itemFade 0.4s ease;
+  /*  ANIMATION */
+  animation: slideUp 0.4s ease;
 }
 
 /* ICON */
 .sidebar-item svg {
   font-size: 18px;
   min-width: 22px;
-
-  /*  ICON POP */
-  animation: pop 0.3s ease;
 }
 
 /* HOVER */
 .sidebar-item:hover {
   background: rgba(255, 255, 255, 0.08);
   color: white;
-  transform: translateX(6px) scale(1.02);
+  transform: translateX(6px);
 }
 
 /* ACTIVE */
@@ -115,10 +160,8 @@
   color: black;
   font-weight: 700;
 
-  box-shadow: 0 6px 18px rgba(255, 208, 0, 0.3);
-
-  /*  ACTIVE POP */
-  animation: pop 0.3s ease;
+  /*  GLOW EFFECT */
+  animation: glow 1.5s infinite;
 }
 
 /* ACTIVE ICON */
