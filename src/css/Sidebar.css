@@ -1,10 +1,47 @@
+/*  ADDED KEYFRAMES */
+@keyframes sidebarSlide {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes menuFade {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes iconPop {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================== */
+
 .sidebar{
   width: 260px;
   background: #000a33;
   padding: 30px 20px;
+
+  /*  SIDEBAR SLIDE IN */
+  animation: sidebarSlide 0.6s ease;
 }
-
-
 
 /* LOGO */
 .logo{
@@ -12,17 +49,16 @@
   font-size: 52px;
   font-weight: bold;
   margin-bottom: 50px;
+
+  /*  LOGO FADE */
+  animation: menuFade 0.7s ease;
 }
-
-
 
 /* MENU */
 .menu{
   list-style: none;
   padding: 0;
 }
-
-
 
 /* MENU ITEM */
 .menu li{
@@ -41,33 +77,55 @@
 
   cursor: pointer;
   transition: 0.3s;
+
+  /*  ITEM ANIMATION */
+  animation: menuFade 0.5s ease;
 }
-
-
 
 /* ICON */
 .menu li svg{
   font-size: 22px;
+
+  /*  ICON POP */
+  animation: iconPop 0.4s ease;
 }
-
-
 
 /* ACTIVE */
 .menu .active{
   background: #ffd000;
   color: black;
+
+  /*  ACTIVE POP */
+  animation: iconPop 0.3s ease;
 }
-
-
 
 /* ACTIVE ICON */
 .menu .active svg{
   color: black;
 }
 
-
-
 /* HOVER */
 .menu li:hover{
   background: #16244d;
+  transform: translateX(5px); /* smooth slide on hover */
+}
+
+/* TITLE */
+.sidebar-title {
+  font-size: 40px;
+  font-weight: 700;
+
+  color: #ffd000;
+
+  line-height: 1.1;
+  letter-spacing: 1px;
+
+  margin: 20px 0 30px 10px;
+
+  text-transform: uppercase;
+
+  text-shadow: 0 4px 15px rgba(255, 208, 0, 0.4);
+
+  /*  TITLE FADE */
+  animation: menuFade 0.6s ease;
 }
