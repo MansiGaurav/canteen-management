@@ -152,3 +152,133 @@
 .orders-table td:nth-child(4) {
   width: 15%;
 }
+.upi-qr-section {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.upi-qr-image {
+  width: 180px;
+  height: 180px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 2px solid #ffd700;
+}
+
+.upi-note {
+  font-size: 14px;
+  color: #ccc;
+}
+/* PAYMENT OPTIONS */
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: 12px;
+  background: #1a2a4f;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.payment-option:hover {
+  transform: scale(1.03);
+}
+
+.payment-option.active {
+  border: 2px solid #ffd700;
+  background: #0f1c3f;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.payment-icon {
+  font-size: 20px;
+  color: #ffd700;
+}
+
+/* QR SECTION */
+.upi-qr-section {
+  margin-top: 15px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.upi-qr-image {
+  width: 180px;
+  height: 180px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 2px solid #ffd700;
+}
+
+.upi-note {
+  font-size: 13px;
+  margin-top: 8px;
+  color: #ccc;
+}
+
+/* animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.option-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ICON STYLE */
+.place-icon {
+  font-size: 18px;
+  color: #ffd000;
+}
+/* FLEX ALIGNMENT */
+.option-box,
+.payment-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LEFT SIDE */
+.option-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ICON */
+.place-icon,
+.payment-icon {
+  font-size: 18px;
+  color: #ffd000;
+}
+
+/* TICK */
+.tick-icon {
+  color: #22c55e;
+  font-size: 18px;
+  animation: pop 0.2s ease;
+}
+
+/* ANIMATION */
+@keyframes pop {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
