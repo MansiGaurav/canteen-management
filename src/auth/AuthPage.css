@@ -1,3 +1,37 @@
+/*  KEYFRAMES */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* FULL SCREEN BACKGROUND */
 .auth-container {
   height: 100vh;
@@ -8,6 +42,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /*  PAGE LOAD */
+  animation: fadeUp 0.6s ease;
 }
 
 /* GLASS CARD */
@@ -23,6 +60,9 @@
 
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   transition: 0.3s ease;
+
+  /*  POP */
+  animation: pop 0.5s ease;
 }
 
 .auth-box:hover {
@@ -38,6 +78,8 @@
   margin-bottom: 5px;
 
   text-shadow: 0 2px 10px rgba(255, 208, 0, 0.4);
+
+  animation: fadeUp 0.7s ease;
 }
 
 .subtitle {
@@ -45,6 +87,8 @@
   font-size: 14px;
   margin-bottom: 20px;
   color: #ccc;
+
+  animation: fadeUp 0.8s ease;
 }
 
 /* ROLE SWITCH */
@@ -53,6 +97,8 @@
   margin-bottom: 15px;
   border-radius: 8px;
   overflow: hidden;
+
+  animation: slideLeft 0.6s ease;
 }
 
 .role-switch button {
@@ -64,6 +110,10 @@
   background: #333;
   color: white;
   transition: 0.3s;
+}
+
+.role-switch button:hover {
+  transform: scale(1.05);
 }
 
 .role-switch .active {
@@ -84,6 +134,12 @@
 
   font-size: 14px;
   background: #f1f1f1;
+
+  transition: 0.2s;
+}
+
+.auth-box input:focus {
+  transform: scale(1.02);
 }
 
 /* SIGNUP / SIGNIN BUTTON */
@@ -100,10 +156,13 @@
 
   cursor: pointer;
   transition: 0.3s;
+
+  animation: pop 0.6s ease;
 }
 
 .signup-btn:hover {
   background: #ffbf00;
+  transform: scale(1.05);
 }
 
 /* DIVIDER */
@@ -113,6 +172,8 @@
   font-size: 14px;
   color: #aaa;
   position: relative;
+
+  animation: fadeUp 0.7s ease;
 }
 
 /* GOOGLE BUTTON */
@@ -134,10 +195,13 @@
   cursor: pointer;
   transition: 0.3s;
   font-weight: 600;
+
+  animation: fadeUp 0.8s ease;
 }
 
 .google-btn:hover {
   background: #f1f1f1;
+  transform: scale(1.05);
 }
 
 /* LOGIN / SWITCH TEXT */
@@ -146,6 +210,8 @@
   font-size: 13px;
   text-align: center;
   color: #ccc;
+
+  animation: fadeUp 0.9s ease;
 }
 
 .login-text span {
@@ -154,7 +220,7 @@
   font-weight: 600;
 }
 
-/*  EXTRA FOR LOGIN MODE */
+/* EXTRA FOR LOGIN MODE */
 .auth-box.login-mode input {
   margin: 8px 0;
 }
@@ -163,8 +229,12 @@
 .auth-box {
   transition: all 0.3s ease;
 }
+
+/* ERROR */
 .error {
   color: red;
   font-size: 13px;
   margin-top: 4px;
+
+  animation: fadeUp 0.3s ease;
 }
