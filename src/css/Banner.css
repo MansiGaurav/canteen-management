@@ -1,3 +1,51 @@
+/*  KEYFRAMES */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes floatImg {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* ================= BANNER ================= */
+
 .banner{
   width: 100%;
 
@@ -16,13 +64,16 @@
   margin-top: 20px;
 
   overflow: hidden;
+
+  /*  ENTRY ANIMATION */
+  animation: fadeUp 0.6s ease;
 }
-
-
 
 /* LEFT */
 .banner-left{
   width: 55%;
+
+  animation: slideLeft 0.7s ease;
 }
 
 .banner-left h1{
@@ -34,6 +85,8 @@
   margin-bottom: 12px;
 
   line-height: 1.2;
+
+  animation: fadeUp 0.8s ease;
 }
 
 .banner-left p{
@@ -42,9 +95,9 @@
   color: #222;
 
   line-height: 1.5;
+
+  animation: fadeUp 0.9s ease;
 }
-
-
 
 /* RIGHT */
 .banner-right{
@@ -52,11 +105,15 @@
 
   display: flex;
   justify-content: center;
+
+  animation: slideRight 0.8s ease;
 }
 
 .banner-right img{
   width: 240px;
 
   object-fit: contain;
-}
 
+  /*  FLOATING EFFECT */
+  animation: floatImg 3s ease-in-out infinite;
+}
