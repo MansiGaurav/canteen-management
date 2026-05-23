@@ -1,3 +1,28 @@
+/*  ADDED KEYFRAMES */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ================= PAGE ================= */
+
 .admin-settings-page {
   min-height: 100vh;
 
@@ -6,14 +31,18 @@
   align-items: center;
 
   padding: 30px;
+
+  /*  PAGE FADE */
+  animation: fadeUp 0.6s ease;
 }
 
-/*  BIG CARD */
+/* ================= CARD ================= */
+
 .settings-card {
   background: rgba(0, 0, 50, 0.85);
 
-  width: 600px;             
-  padding: 45px 40px;    
+  width: 600px;
+  padding: 45px 40px;
 
   border-radius: 22px;
 
@@ -21,18 +50,25 @@
   color: white;
 
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+  /*  CARD POP */
+  animation: pop 0.5s ease;
 }
 
-/* TITLE */
+/* ================= TITLE ================= */
+
 .settings-card h2 {
   text-align: center;
   margin-bottom: 30px;
 
   color: #ffd000;
   font-size: 28px;
+
+  animation: fadeUp 0.7s ease;
 }
 
-/*  EACH ROW */
+/* ================= ITEMS ================= */
+
 .setting-item {
   display: flex;
   justify-content: space-between;
@@ -46,11 +82,14 @@
   background: rgba(255, 255, 255, 0.07);
 
   transition: 0.3s ease;
+
+  /*  ITEM FADE */
+  animation: fadeUp 0.5s ease;
 }
 
 /* HOVER EFFECT */
 .setting-item:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.01);
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -60,7 +99,8 @@
   font-weight: 500;
 }
 
-/*  BUTTON */
+/* ================= BUTTON ================= */
+
 .setting-item button {
   padding: 8px 20px;
   font-size: 15px;
@@ -75,13 +115,16 @@
   cursor: pointer;
 
   transition: 0.2s;
+
+  animation: pop 0.4s ease;
 }
 
 .setting-item button:hover {
   transform: scale(1.05);
 }
 
-/*  DANGER BUTTON */
+/* ================= DANGER ================= */
+
 .setting-item.danger button {
   background: #ff3b3b;
   color: white;
